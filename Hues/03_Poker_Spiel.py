@@ -9,27 +9,27 @@ def ziehe_hand(deck, anzahl):
         deck[len(deck)-1-i] = hand[i]
     return hand
 
-def get_Werte(karten, werte):
+def get_werte(karten, anzahl_werte):
     ergebnis = []
     for k in karten:
-        ergebnis.append(k%werte)
+        ergebnis.append(k%anzahl_werte)
     return ergebnis
 
-def get_Farben(gesamt_karten,karten, farben):
+def get_farben(gesamt_karten,karten, farben):
     ergebnis = []
     bereich = gesamt_karten//farben
     for k in karten:
         ergebnis.append(k//bereich)
     return ergebnis
 
-def check_Paar(hand):
-    for x in hand:
-        for y in hand:
-            if x == y:
-                break
-            if x%13 == y%13:
-                return True
-    return False
+# def check_Paar(hand):
+#     for x in hand:
+#         for y in hand:
+#             if x == y:
+#                 break
+#             if x%13 == y%13:
+#                 return True
+#     return False
 
 def check_gleiche_Karten(werte):
     gleiche = []
@@ -53,7 +53,7 @@ def check_gleiche_Karten(werte):
         
 
 
-def check_Strasse(werte):
+def check_strasse(werte):
     
 
     if werte == [0, 1, 2, 3, 12]:      
@@ -75,13 +75,13 @@ def check_flush(farben):
     return True
 
 def rate_hand(hand):
-    farben = get_Farben(52,hand,4)
+    farben = get_farben(52,hand,4)
     farben.sort()
-    werte = get_Werte(hand, 13)
+    werte = get_werte(hand, 13)
     werte.sort()
 
     flush = check_flush(farben)
-    straight = check_Strasse(werte)
+    straight = check_strasse(werte)
 
     if(flush == True):
         if(straight[0] == True):
@@ -142,7 +142,7 @@ if __name__ == "__main__":
     # print(gezogene_hand)
     # print(Karten)
     # print(check_Paar(gezogene_hand))
-    # print(check_Strasse([13,3,4,2,1]))
+    # print(check_strasse([13,3,4,2,1]))
     # print(check_flush([0,1,2,3,4]))
     # print(check_gleiche_Karten([0,14,26,13,1]))
     # print(rate_hand([0,0,0,2,2]))
